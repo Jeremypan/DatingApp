@@ -65,6 +65,8 @@ namespace DatingApp.API
             }
             else
             {
+                // if module is production
+                // use exceptionhandler to pass the error message to client
                 app.UseExceptionHandler(builder => 
                 {
                     builder.Run(async context => {

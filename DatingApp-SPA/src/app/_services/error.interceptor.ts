@@ -1,10 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpInterceptor, HTTP_INTERCEPTORS, ɵHttpInterceptingHandler } from '@angular/common/http';
-import { forwardRef, Injectable } from '@angular/core';
+import { HttpErrorResponse, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 
-
+// create Injectable ErrorInterceptor class for the service
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     intercept(
@@ -14,6 +14,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             // tslint:disable-next-line: no-shadowed-variable
             catchError(error => {
+                // how to interpret the error message
                 if (error.status === 401) {
                     return throwError(error.statusText);
                 }
